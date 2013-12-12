@@ -1,0 +1,67 @@
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
+	margin: 0;
+	padding: 0;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+fieldset, img {
+	border: 0;
+}
+address, caption, cite, code, dfn, em, strong, th, var {
+	font-style: normal;
+	font-weight: normal;
+}
+ol, ul {
+	list-style: none;
+}
+caption, th {
+	text-align: left;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-size: 100%;
+	font-weight: normal;
+}
+h2{
+	font: bold 20px/26px Verdana, Arial, sans-serif;
+}
+q:before, q:after {
+	content: '';
+}
+abbr, acronym {
+	border: 0;
+}
+html {
+	height: 100%;
+}
+header, nav, section, article, aside, footer {
+	display: block;
+}
+body {
+	font: 14px/20px Arial, Tahoma, Verdana, sans-serif;
+	width: 100%;
+	height: 100%;
+	background: #A28D88;
+    overflow: hidden;
+    text-align: center;
+}
+a {
+	color: blue;
+	outline: none;
+	text-decoration: underline;
+}
+a:hover {
+	text-decoration: none;
+}
+img {
+	border: none;
+}
+input {
+	vertical-align: middle;
+}
+#game {
+    position:relative;
+    background: #121212 /*url(images/fon.bmp) repeat 0 0*/;
+    margin: 0 auto;
+}

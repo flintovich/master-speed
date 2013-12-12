@@ -78,6 +78,10 @@ window.onload=function(){
     redCar.src = 'images/red-car.png';
     var gangsterCar = new Image();
     gangsterCar.src = 'images/gangster-car.png';
+    var car3 = new Image();
+    car3.src = 'images/car3.png';
+    var car4 = new Image();
+    car4.src = 'images/car4.png';
 
     var myCar = redCar;
     
@@ -87,6 +91,10 @@ window.onload=function(){
     var y2=0;
 
     // Car control
+    var turnLeftCar = false;
+    var turnRightCar = false;
+    var speedUp = false;
+    var speedDown = false;
     function carControl(){
         if(turnLeftCar == true){
             if(carStartX <= 140){
@@ -114,23 +122,39 @@ window.onload=function(){
         }
     }
 
+    // add other cars
     var otherCarSpeed = new Array(3,4,5,6,7,8,9,10,11,12,13);
     var possibleOtherCarPosition = new Array(150,280,420,550);
     var indexCarSpeed = 0;
     var indexCarSpeed2 = 0;
     var indexCarSpeed3 = 0;
-    var indexCarSpeed4 = 0;
-    var indexCarPos = 4;
-    var indexCarPos2 = 3;
-    var indexCarPos3 = 4;
-    var indexCarPos4 = 1;
-    var carStartPosition = -300;
-    var carStartPosition2 = -300;
-    var carStartPosition3 = -300;
-    var carStartPosition4 = -300;
+    var indexCarPos = 1;
+    var indexCarPos2 = 4;
+    var indexCarPos3 = 3;
+    var carStartPosition = -1300;
+    var carStartPosition2 = -350;
+    var carStartPosition3 = -800;
+    function addOtherCars(){
+        ctx.drawImage(gangsterCar, possibleOtherCarPosition[indexCarPos], carStartPosition=carStartPosition+numberSpeed-otherCarSpeed[indexCarSpeed]);
+        ctx.drawImage(car3, possibleOtherCarPosition[indexCarPos2], carStartPosition2=carStartPosition2+numberSpeed-otherCarSpeed[indexCarSpeed2]);
+        ctx.drawImage(car4, possibleOtherCarPosition[indexCarPos3], carStartPosition3=carStartPosition3+numberSpeed-otherCarSpeed[indexCarSpeed3]);
+        if(carStartPosition >= 2000){
+            carStartPosition = -300;
+            indexCarPos = rand(0,possibleOtherCarPosition.length -1);
+            indexCarSpeed = rand(0,otherCarSpeed.length -1);
+        }
+        if(carStartPosition2 >= 2000){
+            carStartPosition2 = -350;
+            indexCarPos2 = rand(0,possibleOtherCarPosition.length -1);
+            indexCarSpeed2 = rand(0,otherCarSpeed.length -1);
+        }
+        if(carStartPosition3 >= 2000){
+            carStartPosition3 = -400;
+            indexCarPos3 = rand(0,possibleOtherCarPosition.length -1);
+            indexCarSpeed3 = rand(0,otherCarSpeed.length -1);
+        }
+    }
 
-
-    // add other cars
 
     function road(){
         ctx.clearRect(0,0,ctx.canvas.width,ctx.canvas.height);
@@ -165,38 +189,15 @@ window.onload=function(){
         y1 = y1+numberSpeed;
         y2 = y2+numberSpeed;
 
-        //speed count
+        // speed count
         ctx.drawImage(SpeedCount, 5, height-160, 120, 120);
         addText(10*numberSpeed.toFixed(1), 65, height-90);
 
         // Call car control
         carControl();
 
-
-        ctx.drawImage(gangsterCar, possibleOtherCarPosition[indexCarPos], carStartPosition=carStartPosition+numberSpeed-otherCarSpeed[indexCarSpeed]);
-        /*ctx.drawImage(redCar, possibleOtherCarPosition[indexCarPos2], carStartPosition2=carStartPosition2+numberSpeed-otherCarSpeed[indexCarSpeed2]);
-        ctx.drawImage(redCar, possibleOtherCarPosition[indexCarPos3], carStartPosition3=carStartPosition3+numberSpeed-otherCarSpeed[indexCarSpeed3]);
-        ctx.drawImage(redCar, possibleOtherCarPosition[indexCarPos4], carStartPosition4=carStartPosition4+numberSpeed-otherCarSpeed[indexCarSpeed4]);
-        */if(carStartPosition >= 1000){
-            carStartPosition = -300;
-            indexCarPos = rand(0,possibleOtherCarPosition.length);
-            indexCarSpeed = rand(0,otherCarSpeed.length);
-        }
-        if(carStartPosition2 >= 1000){
-            carStartPosition2 = -300;
-            indexCarPos2 = rand(0,possibleOtherCarPosition.length);
-            indexCarSpeed2 = rand(0,otherCarSpeed.length);
-        }
-        if(carStartPosition3 >= 1000){
-            carStartPosition3 = -300;
-            indexCarPos3 = rand(0,possibleOtherCarPosition.length);
-            indexCarSpeed3 = rand(0,otherCarSpeed.length);
-        }
-        if(carStartPosition4 >= 1000){
-            carStartPosition4 = -300;
-            indexCarPos4 = rand(0,possibleOtherCarPosition.length);
-            indexCarSpeed4 = rand(0,otherCarSpeed.length);
-        }
+        // Call other cars function
+        addOtherCars();
 
     }
     (function animationLoop(){
@@ -205,10 +206,7 @@ window.onload=function(){
     })();
 
 
-    var turnLeftCar = false;
-    var turnRightCar = false;
-    var speedUp = false;
-    var speedDown = false;
+
     // keyboard ---------------------
     document.onkeydown = checkKeycode
     document.onkeyup = upKeycode

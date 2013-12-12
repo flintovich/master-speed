@@ -114,22 +114,21 @@ window.onload=function(){
         }
     }
 
-    var otherCarSpeed = new Array(4,6,8,10,12,5,9,14,13,7);
+    var otherCarSpeed = new Array(3,4,5,6,7,8,9,10,11,12,13);
     var possibleOtherCarPosition = new Array(150,280,420,550);
     var indexCarSpeed = 0;
     var indexCarSpeed2 = 0;
+    var indexCarSpeed3 = 0;
+    var indexCarSpeed4 = 0;
     var indexCarPos = 4;
-    var indexCarPos2 = 4;
+    var indexCarPos2 = 3;
+    var indexCarPos3 = 4;
+    var indexCarPos4 = 1;
     var carStartPosition = -300;
-    var carStartPosition2 = -500;
-    var carStartPosition3 = 0;
-    var carStartPosition4 = 0;
-    var carStartPosition5 = 0;
-    var carStartPosition6 = 0;
-    var carStartPosition7 = 0;
-    var carStartPosition8 = 0;
-    var carStartPosition9 = 0;
-    var otherCarCount = 0;
+    var carStartPosition2 = -300;
+    var carStartPosition3 = -300;
+    var carStartPosition4 = -300;
+
 
     // add other cars
 
@@ -175,16 +174,28 @@ window.onload=function(){
 
 
         ctx.drawImage(gangsterCar, possibleOtherCarPosition[indexCarPos], carStartPosition=carStartPosition+numberSpeed-otherCarSpeed[indexCarSpeed]);
-        ctx.drawImage(redCar, possibleOtherCarPosition[indexCarPos2], carStartPosition2=carStartPosition2+numberSpeed-otherCarSpeed[indexCarSpeed2]);
-        if(carStartPosition > 2000){
-            carStartPosition = -500;
-            indexCarPos = rand(0,3);
-            indexCarSpeed = rand(0,9);
+        /*ctx.drawImage(redCar, possibleOtherCarPosition[indexCarPos2], carStartPosition2=carStartPosition2+numberSpeed-otherCarSpeed[indexCarSpeed2]);
+        ctx.drawImage(redCar, possibleOtherCarPosition[indexCarPos3], carStartPosition3=carStartPosition3+numberSpeed-otherCarSpeed[indexCarSpeed3]);
+        ctx.drawImage(redCar, possibleOtherCarPosition[indexCarPos4], carStartPosition4=carStartPosition4+numberSpeed-otherCarSpeed[indexCarSpeed4]);
+        */if(carStartPosition >= 1000){
+            carStartPosition = -300;
+            indexCarPos = rand(0,possibleOtherCarPosition.length);
+            indexCarSpeed = rand(0,otherCarSpeed.length);
         }
-        if(carStartPosition2 > 2000){
-            carStartPosition2 = -800;
-            indexCarPos2 = rand(0,3);
-            indexCarSpeed2 = rand(0,9);
+        if(carStartPosition2 >= 1000){
+            carStartPosition2 = -300;
+            indexCarPos2 = rand(0,possibleOtherCarPosition.length);
+            indexCarSpeed2 = rand(0,otherCarSpeed.length);
+        }
+        if(carStartPosition3 >= 1000){
+            carStartPosition3 = -300;
+            indexCarPos3 = rand(0,possibleOtherCarPosition.length);
+            indexCarSpeed3 = rand(0,otherCarSpeed.length);
+        }
+        if(carStartPosition4 >= 1000){
+            carStartPosition4 = -300;
+            indexCarPos4 = rand(0,possibleOtherCarPosition.length);
+            indexCarSpeed4 = rand(0,otherCarSpeed.length);
         }
 
     }

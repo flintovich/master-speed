@@ -109,9 +109,19 @@ window.onload=function(){
             carStartX=carStartX+(numberSpeed/2);
         }
         if(speedUp == true){
-            if(numberSpeed >= 15){
+            if(numberSpeed >= 16){
+                return false
+            } else if(numberSpeed > 12){
+                numberSpeed=numberSpeed+0.01
+                return false
+            } else if(numberSpeed > 9){
+                numberSpeed=numberSpeed+0.015
+                return false
+            } else if(numberSpeed > 6){
+                numberSpeed=numberSpeed+0.02
                 return false
             }
+
             numberSpeed=numberSpeed+0.03
         }
         if(speedDown == true){
@@ -142,14 +152,26 @@ window.onload=function(){
             carStartPosition = -300;
             indexCarPos = rand(0,possibleOtherCarPosition.length -1);
             indexCarSpeed = rand(0,otherCarSpeed.length -1);
+        } else if(carStartPosition <= -1500){
+            carStartPosition = 1200;
+            indexCarPos = rand(0,possibleOtherCarPosition.length -1);
+            indexCarSpeed = rand(0,otherCarSpeed.length -1);
         }
         if(carStartPosition2 >= 2000){
             carStartPosition2 = -350;
             indexCarPos2 = rand(0,possibleOtherCarPosition.length -1);
             indexCarSpeed2 = rand(0,otherCarSpeed.length -1);
+        } else if(carStartPosition2 <= -1500){
+            carStartPosition2 = 1200;
+            indexCarPos2 = rand(0,possibleOtherCarPosition.length -1);
+            indexCarSpeed2 = rand(0,otherCarSpeed.length -1);
         }
         if(carStartPosition3 >= 2000){
             carStartPosition3 = -400;
+            indexCarPos3 = rand(0,possibleOtherCarPosition.length -1);
+            indexCarSpeed3 = rand(0,otherCarSpeed.length -1);
+        } else if(carStartPosition3 <= -1500){
+            carStartPosition3 = 1200;
             indexCarPos3 = rand(0,possibleOtherCarPosition.length -1);
             indexCarSpeed3 = rand(0,otherCarSpeed.length -1);
         }

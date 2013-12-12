@@ -116,8 +116,24 @@ window.onload=function(){
         }
     }
 
-    var otherCarSpeed = 8;
+    var otherCarSpeed = new Array(4,6,8,10,12,5,9,14,13,7);
+    var indexCarSpeed = 0;
+    var possibleOtherCarPosition = new Array(150,280,420,550);
+    var indexCarPos = 0;
     var carStartPosition = 0;
+    var carStartPosition1 = 0;
+    var carStartPosition2 = 0;
+    var carStartPosition3 = 0;
+    var carStartPosition4 = 0;
+    var carStartPosition5 = 0;
+    var carStartPosition6 = 0;
+    var carStartPosition7 = 0;
+    var carStartPosition8 = 0;
+    var carStartPosition9 = 0;
+    var otherCarCount = 0;
+
+    // add other cars
+
     function road(){
         ctx.clearRect(0,0,ctx.canvas.width,ctx.canvas.height);
 
@@ -147,11 +163,6 @@ window.onload=function(){
         // car
         ctx.drawImage(myCar, carStartX, height-220);
 
-        // road bg
-        //canvas.style.backgroundPosition= '0px ' + roadMoveSpeed + 'px';
-        //roadMoveSpeed = roadMoveSpeed+numberSpeed;
-
-
         // change speed
         y1 = y1+numberSpeed;
         y2 = y2+numberSpeed;
@@ -163,14 +174,20 @@ window.onload=function(){
         // Call car control
         carControl();
 
-        // add other cars
-        ctx.drawImage(gangsterCar, 550, carStartPosition=carStartPosition+numberSpeed-otherCarSpeed);
+
+        ctx.drawImage(gangsterCar, possibleOtherCarPosition[indexCarPos], carStartPosition=carStartPosition+numberSpeed-otherCarSpeed[indexCarSpeed]);
+        if(carStartPosition > 2000){
+            carStartPosition = -500;
+            indexCarPos = rand(0,3);
+            indexCarSpeed = rand(0,9);
+        }
 
     }
     (function animationLoop(){
         road();
         requestAnimationFrame(animationLoop,'#game');
     })();
+
 
     var turnLeftCar = false;
     var turnRightCar = false;

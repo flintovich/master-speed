@@ -138,9 +138,8 @@ window.onload=function(){
     var carStartPosition3 = -800;
     function addOtherCars(){
         ctx.drawImage(gangsterCar, possibleOtherCarPosition[indexCarPos], carStartPosition=carStartPosition+numberSpeed-otherCarSpeed[indexCarSpeed]);
-        //console.log(Game.cardata);
-        //ctx.drawImage(car3, possibleOtherCarPosition[indexCarPos2], carStartPosition2=carStartPosition2+numberSpeed-otherCarSpeed[indexCarSpeed2]);
-        //ctx.drawImage(car4, possibleOtherCarPosition[indexCarPos3], carStartPosition3=carStartPosition3+numberSpeed-otherCarSpeed[indexCarSpeed3]);
+        ctx.drawImage(car3, possibleOtherCarPosition[indexCarPos2], carStartPosition2=carStartPosition2+numberSpeed-otherCarSpeed[indexCarSpeed2]);
+        ctx.drawImage(car4, possibleOtherCarPosition[indexCarPos3], carStartPosition3=carStartPosition3+numberSpeed-otherCarSpeed[indexCarSpeed3]);
         if(carStartPosition >= 2000){
             carStartPosition = -300;
             indexCarPos = rand(0,possibleOtherCarPosition.length -1);
@@ -171,13 +170,77 @@ window.onload=function(){
     }
     // car crash function
     function carCrash(){
+        function pushMyVar(){
+            if(numberSpeed < 7 && numberSpeed >= 4){
+                numberSpeed=numberSpeed+0.2
+            }
+            if(numberSpeed < 4){
+                numberSpeed=numberSpeed+1
+            }
+        }
+        // my car
         var x1m = carStartX;
         var x2m = carStartX +100;
         var y1m = height-220;
         var y2m = height-220+203;
-        /*if(carStartX < possibleOtherCarPosition[indexCarPos] +100 && height-220 < carStartPosition + 252 && possibleOtherCarPosition[indexCarPos] < carStartX && height-220 < carStartPosition+252 && carStartX + 100 > possibleOtherCarPosition[indexCarPos]){
-            alert('Авария');
-        }*/
+        // gangster car
+        var x1h = possibleOtherCarPosition[indexCarPos];
+        var x2h = possibleOtherCarPosition[indexCarPos] +100;
+        var y1h = carStartPosition;
+        var y2h = carStartPosition+ 252;
+        // car 2
+        var x1h2 = possibleOtherCarPosition[indexCarPos2];
+        var x2h2 = possibleOtherCarPosition[indexCarPos2] +100;
+        var y1h2 = carStartPosition2;
+        var y2h2 = carStartPosition2+ 252;
+        // car 3
+        var x1h3 = possibleOtherCarPosition[indexCarPos3];
+        var x2h3 = possibleOtherCarPosition[indexCarPos3] +100;
+        var y1h3 = carStartPosition3;
+        var y2h3 = carStartPosition3+ 252;
+        // my car into other
+        if( x1m<x2h && y1m<y2h && y1m>y1h && x2m>x1h ||
+            x1m<x2h2 && y1m<y2h2 && y1m>y1h2 && x2m>x1h2 ||
+            x1m<x2h3 && y1m<y2h3 && y1m>y1h3 && x2m>x1h3 ){
+            numberSpeed = 0.1;
+            carStartX = 350;
+        }
+        // first car into other
+        if( x1h<x2h2 && y1h<y2h2 && y1h>y1h2 && x2h>x1h2 ||
+            x1h<x2h3 && y1h<y2h3 && y1h>y1h3 && x2h>x1h3 ){
+            carStartPosition=carStartPosition+numberSpeed-otherCarSpeed[0];
+            return false
+        }
+        // second car into other
+        if( x1h2<x2h && y1h2<y2h && y1h2>y1h && x2h2>x1h ||
+            x1h2<x2h3 && y1h2<y2h3 && y1h2>y1h3 && x2h2>x1h3 ){
+            carStartPosition2=carStartPosition2+numberSpeed-otherCarSpeed[0];
+            return false
+        }
+        // third car into other
+        if( x1h3<x2h2 && y1h3<y2h2 && y1h3>y1h2 && x2h3>x1h2 ||
+            x1h3<x2h && y1h3<y2h && y1h3>y1h && x2h3>x1h){
+            carStartPosition3=carStartPosition3+numberSpeed-otherCarSpeed[0];
+            return false
+        }
+
+
+        // cangster car
+        if( x1h<=x2m && y1h<=y2m && y1h>=y1m && x2h>=x1m){
+            pushMyVar()
+            carStartPosition=carStartPosition+numberSpeed-2;
+        }
+        // car 2
+        if( x1h2<=x2m && y1h2<=y2m && y1h2>=y1m && x2h2>=x1m){
+            pushMyVar()
+            carStartPosition2=carStartPosition2+numberSpeed-2;
+        }
+        // car 3
+        if( x1h3<=x2m && y1h3<=y2m && y1h3>=y1m && x2h3>=x1m){
+            pushMyVar()
+            carStartPosition3=carStartPosition3+numberSpeed-2;
+        }
+
     }
 
     function road(){

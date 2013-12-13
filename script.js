@@ -225,19 +225,19 @@ window.onload=function(){
         }
 
 
-        // cangster car
+        // gangster car
         if( x1h<=x2m && y1h<=y2m && y1h>=y1m && x2h>=x1m){
-            pushMyVar()
+            pushMyVar();
             carStartPosition=carStartPosition+numberSpeed-2;
         }
         // car 2
         if( x1h2<=x2m && y1h2<=y2m && y1h2>=y1m && x2h2>=x1m){
-            pushMyVar()
+            pushMyVar();
             carStartPosition2=carStartPosition2+numberSpeed-2;
         }
         // car 3
         if( x1h3<=x2m && y1h3<=y2m && y1h3>=y1m && x2h3>=x1m){
-            pushMyVar()
+            pushMyVar();
             carStartPosition3=carStartPosition3+numberSpeed-2;
         }
 

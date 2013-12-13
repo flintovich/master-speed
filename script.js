@@ -46,14 +46,6 @@ window.onload=function(){
         max = parseInt(max);
         return Math.floor( Math.random() * (max - min + 1)) + min;
     }
-    function Circle(x,y,radius, r, g, b){
-        this.x = x;
-        this.y = y;
-        this.radius = radius;
-        this.r = r;
-        this.g = g;
-        this.b = b;
-    }
     function addText(text,x,y){
         ctx.font = "25px Arial";
         ctx.textAlign = "center";
@@ -146,8 +138,9 @@ window.onload=function(){
     var carStartPosition3 = -800;
     function addOtherCars(){
         ctx.drawImage(gangsterCar, possibleOtherCarPosition[indexCarPos], carStartPosition=carStartPosition+numberSpeed-otherCarSpeed[indexCarSpeed]);
-        ctx.drawImage(car3, possibleOtherCarPosition[indexCarPos2], carStartPosition2=carStartPosition2+numberSpeed-otherCarSpeed[indexCarSpeed2]);
-        ctx.drawImage(car4, possibleOtherCarPosition[indexCarPos3], carStartPosition3=carStartPosition3+numberSpeed-otherCarSpeed[indexCarSpeed3]);
+        //console.log(Game.cardata);
+        //ctx.drawImage(car3, possibleOtherCarPosition[indexCarPos2], carStartPosition2=carStartPosition2+numberSpeed-otherCarSpeed[indexCarSpeed2]);
+        //ctx.drawImage(car4, possibleOtherCarPosition[indexCarPos3], carStartPosition3=carStartPosition3+numberSpeed-otherCarSpeed[indexCarSpeed3]);
         if(carStartPosition >= 2000){
             carStartPosition = -300;
             indexCarPos = rand(0,possibleOtherCarPosition.length -1);
@@ -176,7 +169,16 @@ window.onload=function(){
             indexCarSpeed3 = rand(0,otherCarSpeed.length -1);
         }
     }
-
+    // car crash function
+    function carCrash(){
+        var x1m = carStartX;
+        var x2m = carStartX +100;
+        var y1m = height-220;
+        var y2m = height-220+203;
+        /*if(carStartX < possibleOtherCarPosition[indexCarPos] +100 && height-220 < carStartPosition + 252 && possibleOtherCarPosition[indexCarPos] < carStartX && height-220 < carStartPosition+252 && carStartX + 100 > possibleOtherCarPosition[indexCarPos]){
+            alert('Авария');
+        }*/
+    }
 
     function road(){
         ctx.clearRect(0,0,ctx.canvas.width,ctx.canvas.height);
@@ -204,7 +206,7 @@ window.onload=function(){
         drawLine(ctx, width/2+width/2-width/3, y1+600, width/2+width/2-width/3, y2+600, 3, '#fff');
         drawLine(ctx, width/2+width/2-width/3, y1+800, width/2+width/2-width/3, y2+800, 3, '#fff');
 
-        // car
+        // my car
         ctx.drawImage(myCar, carStartX, height-220);
 
         // change speed
@@ -221,6 +223,8 @@ window.onload=function(){
         // Call other cars function
         addOtherCars();
 
+        // Call cars crush
+        carCrash();
     }
     (function animationLoop(){
         road();

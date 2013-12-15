@@ -143,7 +143,7 @@ window.onload=function(){
         ctx.drawImage(car3, possibleOtherCarPosition[indexCarPos2], carStartPosition2=carStartPosition2+numberSpeed-otherCarSpeed[indexCarSpeed2]);
         ctx.drawImage(car4, possibleOtherCarPosition[indexCarPos3], carStartPosition3=carStartPosition3+numberSpeed-otherCarSpeed[indexCarSpeed3]);
         if(carStartPosition >= 2000){
-            carStartPosition = -300;
+            carStartPosition = -400;
             indexCarPos = rand(0,possibleOtherCarPosition.length -1);
             indexCarSpeed = rand(0,otherCarSpeed.length -1);
         } else if(carStartPosition <= -1500){
@@ -152,7 +152,7 @@ window.onload=function(){
             indexCarSpeed = rand(0,otherCarSpeed.length -1);
         }
         if(carStartPosition2 >= 2000){
-            carStartPosition2 = -350;
+            carStartPosition2 = -450;
             indexCarPos2 = rand(0,possibleOtherCarPosition.length -1);
             indexCarSpeed2 = rand(0,otherCarSpeed.length -1);
         } else if(carStartPosition2 <= -1500){
@@ -161,7 +161,7 @@ window.onload=function(){
             indexCarSpeed2 = rand(0,otherCarSpeed.length -1);
         }
         if(carStartPosition3 >= 2000){
-            carStartPosition3 = -400;
+            carStartPosition3 = -450;
             indexCarPos3 = rand(0,possibleOtherCarPosition.length -1);
             indexCarSpeed3 = rand(0,otherCarSpeed.length -1);
         } else if(carStartPosition3 <= -1500){
@@ -173,6 +173,12 @@ window.onload=function(){
     // car crash function
     function carCrash(){
         function pushMyVar(){
+            if(numberSpeed < otherCarSpeed.length && numberSpeed >= 12){
+                numberSpeed=numberSpeed+1
+            }
+            if(numberSpeed < 12 && numberSpeed >= 7){
+                numberSpeed=numberSpeed+0.5
+            }
             if(numberSpeed < 7 && numberSpeed >= 4){
                 numberSpeed=numberSpeed+0.2
             }

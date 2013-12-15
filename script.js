@@ -63,6 +63,8 @@ window.onload=function(){
         ctx.stroke();
     }
 
+    document.getElementById('go').play();
+
     // images
     var SpeedCount = new Image();
     SpeedCount.src = 'images/speedcount.png';
@@ -101,7 +103,7 @@ window.onload=function(){
             carStartX=carStartX+(numberSpeed/2);
         }
         if(speedUp == true){
-            if(numberSpeed >= 16){
+            if(numberSpeed >= 20){
                 return false
             } else if(numberSpeed > 12){
                 numberSpeed=numberSpeed+0.01
@@ -125,7 +127,7 @@ window.onload=function(){
     }
 
     // add other cars
-    var otherCarSpeed = new Array(3,4,5,6,7,8,9,10,11,12,13);
+    var otherCarSpeed = new Array(5,6,7,8,9,10,11,12,13,14,15,16,17,18);
     var possibleOtherCarPosition = new Array(150,280,420,550);
     var indexCarSpeed = 0;
     var indexCarSpeed2 = 0;
@@ -177,6 +179,7 @@ window.onload=function(){
             if(numberSpeed < 4){
                 numberSpeed=numberSpeed+1
             }
+            document.getElementById('gudok').play();
         }
         // my car
         var x1m = carStartX;
@@ -192,18 +195,21 @@ window.onload=function(){
         var x1h2 = possibleOtherCarPosition[indexCarPos2];
         var x2h2 = possibleOtherCarPosition[indexCarPos2] +100;
         var y1h2 = carStartPosition2;
-        var y2h2 = carStartPosition2+ 252;
+        var y2h2 = carStartPosition2+ 218;
         // car 3
         var x1h3 = possibleOtherCarPosition[indexCarPos3];
         var x2h3 = possibleOtherCarPosition[indexCarPos3] +100;
         var y1h3 = carStartPosition3;
-        var y2h3 = carStartPosition3+ 252;
+        var y2h3 = carStartPosition3+ 210;
+
         // my car into other
         if( x1m<x2h && y1m<y2h && y1m>y1h && x2m>x1h ||
             x1m<x2h2 && y1m<y2h2 && y1m>y1h2 && x2m>x1h2 ||
             x1m<x2h3 && y1m<y2h3 && y1m>y1h3 && x2m>x1h3 ){
             numberSpeed = 0.1;
             carStartX = 350;
+            var car_crash = document.getElementById('car-crash');
+            car_crash.play();
         }
         // first car into other
         if( x1h<x2h2 && y1h<y2h2 && y1h>y1h2 && x2h>x1h2 ||

@@ -1,11 +1,13 @@
 window.onload=function(){
     var canvas = document.getElementById('game');
     var ctx = canvas.getContext('2d');
-    /*canvas.width = innerWidth;
-    canvas.height = innerHeight;*/
+    /*canvas.width = innerWidth;*/
+    canvas.height = innerHeight -10;
     var width = canvas.width;
     var height = canvas.height;
-
+    var date = new Date();
+    // console.log(date.getDate()+'.'+date.getMonth()+' / '+date.getHours()+':'+ date.getMinutes()+':'+date.getSeconds());
+    // result.childNodes[1].childNodes[1].childNodes[i].childNodes[5].innerHTML=game_count_Data[u]
 
     var numberSpeed = 1;
     var carStartX = 550;
@@ -46,8 +48,8 @@ window.onload=function(){
         max = parseInt(max);
         return Math.floor( Math.random() * (max - min + 1)) + min;
     }
-    function addText(text,x,y){
-        ctx.font = "25px Arial";
+    function addText(text,x,y,size){
+        ctx.font = size+'px Arial';
         ctx.textAlign = "center";
         ctx.fillStyle = "#ff0501";
         ctx.fillText(text,x,y);
@@ -127,7 +129,7 @@ window.onload=function(){
     }
 
     // add other cars
-    var otherCarSpeed = new Array(5,6,7,8,9,10,11,12,13,14,15,16,17,18);
+    var otherCarSpeed = new Array(5,6,7,8,9,10,11,12,13,14,15,16);
     var possibleOtherCarPosition = new Array(150,280,420,550);
     var indexCarSpeed = 0;
     var indexCarSpeed2 = 0;
@@ -174,10 +176,10 @@ window.onload=function(){
     function carCrash(){
         function pushMyVar(){
             if(numberSpeed < otherCarSpeed.length && numberSpeed >= 12){
-                numberSpeed=numberSpeed+1
+                numberSpeed=numberSpeed+0.3
             }
             if(numberSpeed < 12 && numberSpeed >= 7){
-                numberSpeed=numberSpeed+0.5
+                numberSpeed=numberSpeed+0.3
             }
             if(numberSpeed < 7 && numberSpeed >= 4){
                 numberSpeed=numberSpeed+0.2
@@ -216,6 +218,9 @@ window.onload=function(){
             carStartX = 350;
             var car_crash = document.getElementById('car-crash');
             car_crash.play();
+            game_count=game_count-200;
+            game_health=game_health-1;
+            game_count_Data.push(game_count.toFixed(1));
         }
         // first car into other
         if( x1h<x2h2 && y1h<y2h2 && y1h>y1h2 && x2h>x1h2 ||
@@ -252,11 +257,22 @@ window.onload=function(){
             pushMyVar();
             carStartPosition3=carStartPosition3+numberSpeed-2;
         }
+    }
 
+    var game_count = 0;
+    var game_health = 1;
+    var game_count_Data = new Array();
+    function gameCount(){
+        game_count = game_count+(numberSpeed/98);
+        addText('Result: '+game_count.toFixed(1), 65, 70, 15);
+        addText('Health: '+game_health, 65, 100, 18);
     }
 
     function road(){
         ctx.clearRect(0,0,ctx.canvas.width,ctx.canvas.height);
+
+        // Call game count
+        gameCount();
 
         if(y1>=99){
             y1= -100;
@@ -290,7 +306,7 @@ window.onload=function(){
 
         // speed count
         ctx.drawImage(SpeedCount, 5, height-160, 120, 120);
-        addText(10*numberSpeed.toFixed(1), 65, height-90);
+        addText(10*numberSpeed.toFixed(1), 65, height-90, 25);
 
         // Call car control
         carControl();
@@ -300,11 +316,14 @@ window.onload=function(){
 
         // Call cars crush
         carCrash();
+
     }
     (function animationLoop(){
         road();
         requestAnimationFrame(animationLoop,'#game');
     })();
+
+
 
 
 
@@ -366,5 +385,4 @@ window.onload=function(){
             turnRightCar = false;
         }
     }
-
 }

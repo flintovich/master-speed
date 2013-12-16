@@ -62,6 +62,20 @@ input {
 }
 #game {
     position:relative;
-    background: #121212 /*url(images/fon.bmp) repeat 0 0*/;
+    background: #121212;
     margin: 0 auto;
+}
+#result{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100px;
+    margin: auto;
+    width: 400px;
+    color: #F9ECC0;
+    display: none;
+}
+#result table{
+    width: 400px;
+    text-align: left;
 }

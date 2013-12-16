@@ -284,18 +284,11 @@ window.onload=function(){
 
         drawLine(ctx, width/6, 0, width/6, height, 5, '#fff');
         drawLine(ctx, width-width/6, 0, width-width/6, height, 5, '#fff');
-
-        drawLine(ctx, width/3, y1, width/3, y2, 3);
-        drawLine(ctx, width/3, y1+200, width/3, y2+200, 3, '#fff');
-        drawLine(ctx, width/3, y1+400, width/3, y2+400, 3, '#fff');
-        drawLine(ctx, width/3, y1+600, width/3, y2+600, 3, '#fff');
-        drawLine(ctx, width/3, y1+800, width/3, y2+800, 3, '#fff');
-
-        drawLine(ctx, width/2+width/2-width/3, y1, width/2+width/2-width/3, y2, 3);
-        drawLine(ctx, width/2+width/2-width/3, y1+200, width/2+width/2-width/3, y2+200, 3, '#fff');
-        drawLine(ctx, width/2+width/2-width/3, y1+400, width/2+width/2-width/3, y2+400, 3, '#fff');
-        drawLine(ctx, width/2+width/2-width/3, y1+600, width/2+width/2-width/3, y2+600, 3, '#fff');
-        drawLine(ctx, width/2+width/2-width/3, y1+800, width/2+width/2-width/3, y2+800, 3, '#fff');
+        // move line
+        for(var i=0; i<=800; i=i+200){
+            drawLine(ctx, width/3, y1+i, width/3, y2+i, 3);
+            drawLine(ctx, width/2+width/2-width/3, y1+i, width/2+width/2-width/3, y2+i, 3);
+        }
 
         // my car
         ctx.drawImage(myCar, carStartX, height-220);
